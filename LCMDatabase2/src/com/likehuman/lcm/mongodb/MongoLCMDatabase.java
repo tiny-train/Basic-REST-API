@@ -23,7 +23,7 @@ import org.bson.Document;
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Filters.*;
 
 
 
@@ -47,7 +47,7 @@ public class MongoLCMDatabase implements LCMDatabase
 	
 	//---------------User Functions---------------//
 	
-	public void 	postUser(String userid, String userJSONObject) throws LCMDatabaseException, IOException
+	public void 	postUser(String userid, String userJSONObject) throws LCMDatabaseException
 	{	
 		try
 		{
@@ -77,7 +77,7 @@ public class MongoLCMDatabase implements LCMDatabase
 		{	
 			MongoCollection<Document> Users = db.getCollection("Users");
 			
-			foundUser = (Document) Users.find(eq("_id", userid));
+			foundUser = (Document) Users.find(eq("_id", userid)).first();
 		}
 		catch(MongoException e)
 		{
@@ -112,21 +112,20 @@ public class MongoLCMDatabase implements LCMDatabase
 	
 	
 	
-	public void 	putUser(String userid, String userUpdateFilePath) throws LCMDatabaseException, IOException
+	public void 	putUser(String userid, String userUpdateJSONObject) throws LCMDatabaseException
 	{	
+		Document foundUser;
 		try
 		{
 			MongoCollection<Document> Users = db.getCollection("Users");
 			
-			String updateUserFile = readFile(userUpdateFilePath);
-			
-			Document  update = Document.parse(updateUserFile);
-			update.put("_id", userid);
+			Document  update = Document.parse(userUpdateJSONObject);
+			//update.put("_id", userid);
 			
 			
-			Document foundUser = (Document) Users.find(eq("_id", userid));
+			foundUser = Users.find(eq("_id", userid)).first();
 			
-			Users.updateOne(foundUser, update);
+			Users.replaceOne(foundUser, update);
 		}
 		catch(MongoException e)
 		{
@@ -163,9 +162,12 @@ public class MongoLCMDatabase implements LCMDatabase
 	{
 		try
 		{
-			MongoLCMDatabase db = LCMDatabaseFactory.getMongoLCMDatabase(args[0], Integer.parseInt(args[1]), args[2]);
+			MongoLCMDatabase db = LCMDatabaseFactory.getMongoLCMDatabase("localhost", 27017, "LCMDatabase");
 		
-			db.deleteUser("02");
+			String update = db.readFile("C:\\Users\\milol\\eclipse - likehuman workspace\\userexample.json");
+			db.putUser("03", update);
+			
+			
 		}
 		catch(LCMDatabaseException e)
 		{

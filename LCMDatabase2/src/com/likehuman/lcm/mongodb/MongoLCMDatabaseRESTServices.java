@@ -22,22 +22,19 @@ public class MongoLCMDatabaseRESTServices
 {
 	@POST	
 	@Produces(MediaType.TEXT_PLAIN)
-	@Path("{id}/{userFilePath}")
-	public Response postUserService(@PathParam("userid") String userid, @PathParam("userFilePath") String userFilePath) 
+	@Path("{userid}")
+	public Response postUserService(@PathParam("userid") String userid, String userJSONObject) 
 	{	
 		try
 		{
 			MongoLCMDatabase db = LCMDatabaseFactory.getMongoLCMDatabase("localhost", 27017, "LCMDatabase");
-			db.postUser(userid, userFilePath);
+			db.postUser(userid, userJSONObject);
 		}
 		catch(LCMDatabaseException e)
 		{
 			return Response.status(404).entity("User could not be created. Please check that file path is correct.").build();		
 		}
-		catch(IOException e)
-		{
-			return Response.status(404).entity("User could not be created. Please check that file path is correct.").build();
-		}
+		
 		return Response.status(200).entity("User Successfully Created").build();
 	}
 		
@@ -57,14 +54,18 @@ public class MongoLCMDatabaseRESTServices
 		{
 			return Response.status(404).entity("User could not be found.").build();	
 		}
+		
+		System.err.println();
+		
 		return Response.status(200).entity(foundUser).build();
+		
 	}
 	
 	
 	
 	@DELETE 
 	@Path ("{userid}")
-	public Response deleteUserService(@PathParam("userid") String userid) throws LCMDatabaseException
+	public Response deleteUserService(@PathParam("userid") String userid) 
 	{
 		try
 		{
@@ -76,6 +77,7 @@ public class MongoLCMDatabaseRESTServices
 		{
 			return Response.status(404).entity("User either does not exist orcould not be deleted.").build();	
 		}
+		System.err.println();
 		return Response.status(200).entity("User was successfully deleted.").build();
 	}
 	
@@ -83,7 +85,7 @@ public class MongoLCMDatabaseRESTServices
 	
 	@PUT
 	@Path ("{userid}") 
-	public Response putUserService(@PathParam("userid") String userid, String userUpdateFilePath) throws LCMDatabaseException, IOException
+	public Response putUserService(@PathParam("userid") String userid, String userUpdateFilePath) 
 	{
 		try
 		{
