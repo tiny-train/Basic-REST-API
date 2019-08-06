@@ -1,4 +1,4 @@
-package com.likehuman.lcm.mongodb;
+package com.likehuman.lcm.restapi;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -14,6 +14,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.bson.Document;
+
+import com.likehuman.lcm.mongodb.LCMDatabaseException;
+import com.likehuman.lcm.mongodb.LCMDatabaseFactory;
+import com.likehuman.lcm.mongodb.MongoLCMDatabase;
 
 
 
