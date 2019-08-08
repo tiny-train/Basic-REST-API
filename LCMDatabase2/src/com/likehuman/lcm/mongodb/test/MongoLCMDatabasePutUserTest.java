@@ -18,7 +18,7 @@ public class MongoLCMDatabasePutUserTest
 {
 	private static MongoLCMDatabase db;
 	@Before
-	public static void setup() throws LCMDatabaseException
+	public void setup() throws LCMDatabaseException
 	{
 		Random rand = new Random();
 		
@@ -29,17 +29,24 @@ public class MongoLCMDatabasePutUserTest
 	
 	
 	@Test
-	public void userPutTest(String userid, String filePath, String updatedFilePath) throws LCMDatabaseException, IOException
+	public void userPutTest() throws LCMDatabaseException, IOException
 	{
-		db.postUser(userid, filePath);
+		Random rand = new Random();
+		String userid = "" + rand.nextInt(1000000);
+		String userJSONString = "{'name': 'Jean Pierre Polnareff', 'email': 'silverchariot@gmail.com'}";
+		String userJSONStringUpdate = "{'name': 'Jean Pierre Polnareff', 'email': 'silverchariotrequiem@gmail.com'}";
 		
-		String unpostedUserUpdateString = db.readFile(updatedFilePath);
-		Document  unpostedUserUpdate = Document.parse(unpostedUserUpdateString);
 		
-		db.putUser(userid, updatedFilePath);
+		db.postUser(userid, userJSONString);
+		
+		db.putUser(userid, userJSONStringUpdate);
+		
+		userJSONStringUpdate = "{'_id': '"+ userid +"', 'name': 'Jean Pierre Polnareff', 'email': 'silverchariotrequiem@gmail.com'}";
+		Document  userUpdateComparison = Document.parse(userJSONStringUpdate);
+		
 		Document postedUserUpdate = db.getUser(userid);
 		
-		assertEquals(unpostedUserUpdate, postedUserUpdate);
+		assertEquals(userUpdateComparison, postedUserUpdate);
 	}
 	
 	

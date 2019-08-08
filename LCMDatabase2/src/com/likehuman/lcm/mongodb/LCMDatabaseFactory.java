@@ -48,7 +48,7 @@ public class LCMDatabaseFactory
 			
 		MongoClient mongoClient = new MongoClient(mongohost, mongoport);
 			
-		db = new MongoLCMDatabase(mongoClient.getDatabase("LCMDatabase"));
+		db = new MongoLCMDatabase(mongoClient.getDatabase(dbname));
 			
 		if(db == null)
 		{
@@ -80,7 +80,7 @@ public class LCMDatabaseFactory
 		
 		MongoClient mongoClient = new MongoClient(mongohost, mongoport);
 			
-		db = new MongoLCMDatabase(mongoClient.getDatabase("LCMDatabase"));
+		db = new MongoLCMDatabase(mongoClient.getDatabase(dbname));
 		
 		if(db == null)
 		{

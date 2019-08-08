@@ -8,8 +8,8 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses
 ({
    MongoLCMDatabasePostGetUserTest.class,
-   MongoLCMDatabaseDeleteUserTest.class,
-   MongoLCMDatabasePutUserTest.class
+  // MongoLCMDatabasePutUserTest.class,
+   //MongoLCMDatabaseDeleteUserTest.class,
 })
 
 

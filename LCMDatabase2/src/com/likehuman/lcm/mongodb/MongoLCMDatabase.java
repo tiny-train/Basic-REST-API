@@ -152,28 +152,12 @@ public class MongoLCMDatabase implements LCMDatabase
 	//---------------Database Functions-----------//
 	public void dropDatabase()
 	{
-		dropDatabase();
+		 db.drop();
 	}
 	
 	
 	
 	
-	public static void main(String[] args) throws IOException
-	{
-		try
-		{
-			MongoLCMDatabase db = LCMDatabaseFactory.getMongoLCMDatabase("localhost", 27017, "LCMDatabase");
-		
-			String update = db.readFile("C:\\Users\\milol\\eclipse - likehuman workspace\\userexample.json");
-			db.putUser("03", update);
-			
-			
-		}
-		catch(LCMDatabaseException e)
-		{
-			System.out.println(e);
-		}
-	}
 	
 	
 }

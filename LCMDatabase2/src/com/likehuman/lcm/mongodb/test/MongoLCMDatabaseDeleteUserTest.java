@@ -19,7 +19,7 @@ public class MongoLCMDatabaseDeleteUserTest
 {
 	private static MongoLCMDatabase db;
 	@Before
-	public static void setup() throws LCMDatabaseException
+	public void setup() throws LCMDatabaseException
 	{
 		Random rand = new Random();
 		
@@ -30,9 +30,13 @@ public class MongoLCMDatabaseDeleteUserTest
 	
 	
 	@Test
-	public void userDeleteTest(String userid, String filePath) throws LCMDatabaseException, IOException
+	public void userDeleteTest() throws LCMDatabaseException, IOException
 	{
-		db.postUser(userid, filePath);
+		Random rand = new Random();
+		String userid = "" + rand.nextInt(1000000);
+		String userJSONString = "{'name': 'Jean Pierre Polnareff', 'email': 'silverchariot@gmail.com'}";
+		
+		db.postUser(userid, userJSONString);
 		
 		db.deleteUser(userid);
 		

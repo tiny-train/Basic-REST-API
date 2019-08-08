@@ -2,7 +2,7 @@ package com.likehuman.lcm.mongodb.test;
 
 import static org.junit.Assert.assertEquals;
 
-import java.io.IOException;
+
 import java.util.Random;
 
 import org.bson.Document;
@@ -16,35 +16,57 @@ import com.likehuman.lcm.mongodb.MongoLCMDatabase;
 
 public class MongoLCMDatabasePostGetUserTest 
 {
-	private static MongoLCMDatabase db;
+	private static MongoLCMDatabase db = null;
+	private static String dbname;
 	@Before
-	public static void setup() throws LCMDatabaseException
+	public void setup() 
 	{
-		Random rand = new Random();
+		try
+		{
+			Random rand = new Random();
 		
-		String dbid = "" + rand.nextInt(1000000);
-		db = LCMDatabaseFactory.getMongoLCMDatabase("localhost", 27017, "testLCMDatabase" + dbid);
+			String dbid = "" + rand.nextInt(1000000);
+			
+			dbname = "testLCMDatabase" + dbid;
+			db = LCMDatabaseFactory.getMongoLCMDatabase("localhost", 27017, dbname);
+		}
+		catch(LCMDatabaseException e)
+		{
+			System.out.println("Could not connect to database.");
+		}
 	}
 	
 	
 	
 	@Test 
-	public static void userPostGetTest(String userid, String filePath) throws LCMDatabaseException, IOException
+	public void userPostGetTest() 
 	{
-		//posting user
-		db.postUser(userid, filePath);
+		try
+		{
+			Random rand = new Random();
+			//String dbid = "" + rand.nextInt(1000000);
+			//MongoLCMDatabase db = LCMDatabaseFactory.getMongoLCMDatabase("localhost", 27017, "testLCMDatabase" + dbid);
+			
+			String userid = "" + rand.nextInt(1000000);
+			String userJSONString = "{'name': 'Jean Pierre Polnareff', 'email': 'silverchariot@gmail.com'}";
+			
+			//posting user
+			db.postUser(userid, userJSONString);
 		
-		//making json document comparable
-		String unpostedUserString = db.readFile(filePath);
-		Document  unpostedUser = Document.parse(unpostedUserString);
+			userJSONString = "{'_id': '"+ userid +"', 'name': 'Jean Pierre Polnareff', 'email': 'silverchariot@gmail.com'}";
+			Document  unpostedUser = Document.parse(userJSONString);
+		
+			//finding the posted user
+			Document postedUser = db.getUser(userid);
 		
 		
-		//finding the posted user
-		Document postedUser = db.getUser(userid);
-		
-		
-		//comparison
-		assertEquals(unpostedUser, postedUser);
+			//comparison
+			assertEquals(unpostedUser, postedUser);
+		}
+		catch(LCMDatabaseException e)
+		{
+			System.out.println("Test failed due to database exception.");
+		}
 		
 	}
 	
@@ -55,5 +77,4 @@ public class MongoLCMDatabasePostGetUserTest
 		db.dropDatabase();
 	}
 	
-
 }
