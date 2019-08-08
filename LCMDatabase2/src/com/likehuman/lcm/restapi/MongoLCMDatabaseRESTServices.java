@@ -20,7 +20,6 @@ import com.likehuman.lcm.mongodb.LCMDatabaseFactory;
 import com.likehuman.lcm.mongodb.MongoLCMDatabase;
 
 
-
 @Path("/api/lcm/user/")
 public class MongoLCMDatabaseRESTServices
 {
@@ -101,7 +100,7 @@ public class MongoLCMDatabaseRESTServices
 		{
 			return Response.status(404).entity("User either does not exist or could not be updated.").build();
 		}
-		return Response.status(404).entity("User was successfully updated.").build();
+		return Response.status(200).entity("User was successfully updated.").build();
 	}
 	
 }

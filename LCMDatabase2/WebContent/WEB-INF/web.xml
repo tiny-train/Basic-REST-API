@@ -20,16 +20,16 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
-    <servlet-name>com.likehuman.lcm.mongodb</servlet-name>
+    <servlet-name>com.likehuman.lcm.restapi</servlet-name>
     <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
     <init-param>
       <param-name>jersey.config.server.provider.packages</param-name>
-      <param-value>com.likehuman.lcm.mongodb</param-value>
+      <param-value>com.likehuman.lcm.restapi</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
-    <servlet-name>com.likehuman.lcm.mongodb</servlet-name>
+    <servlet-name>com.likehuman.lcm.restapi</servlet-name>
     <url-pattern>/*</url-pattern>
   </servlet-mapping>
 </web-app>

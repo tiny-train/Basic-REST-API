@@ -7,20 +7,19 @@ import java.net.URL;
 
 import org.junit.Test;
 
-public class MongoLCMDatabaseRESTServicesGetUserTest 
+public class MongoLCMDatabaseRESTServicesDeleteUserTest 
 {
-	
 	@Test
-	public void getUserTest() 
+	public void deleteUserTest() 
 	{
 		try
 		{
 			String userid = MongoLCMDatabaseRESTServicesPostUserTest.userid;
-		
+			//String userid = "04";
 			
 			URL url = new URL("http://localhost:8080/LCMDatabase2/api/lcm/user/" + userid);
 			HttpURLConnection con = (HttpURLConnection) url.openConnection();
-			con.setRequestMethod("GET");
+			con.setRequestMethod("DELETE");
 		
 			int responseCode = con.getResponseCode();
 		
@@ -30,11 +29,9 @@ public class MongoLCMDatabaseRESTServicesGetUserTest
 		}
 		catch(Exception e)
 		{
-			System.out.println("Get request could not be made.");
+			System.out.println("Delete request could not be made.");
 		}
-	}
-
+	}	
+	
+	
 }
-
-
-
