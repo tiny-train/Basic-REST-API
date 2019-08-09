@@ -1,10 +1,11 @@
 package com.likehuman.lcm.mongodb;
 
-/*
- * Author: Milo Davis
- * Purpose: This class connects a database instance to our database when passed a web xml config file, 
- * 			and returns it for other class use.
+/**
+ * @author: Milo Davis
+ * Purpose: This class connects a database instance to a specified database when passed a web xml config file, 
+ * 			and returns it for use in other classes.
  */
+
 
 import javax.servlet.ServletContext;
 

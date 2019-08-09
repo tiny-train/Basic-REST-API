@@ -1,5 +1,11 @@
 package com.likehuman.lcm.restapi.test;
 
+/**
+ * @author Milo Davis
+ * Purpose: This JUNIT test determines if users can be successfully deleted through an HTTP request.
+ */
+
+
 import static org.junit.Assert.assertEquals;
 
 import java.net.HttpURLConnection;
@@ -14,18 +20,20 @@ public class MongoLCMDatabaseRESTServicesDeleteUserTest
 	{
 		try
 		{
+			//the userid created by the post user test is acquired
 			String userid = MongoLCMDatabaseRESTServicesPostUserTest.userid;
-			//String userid = "04";
 			
+			//creation of HTTP connection to find the user we want to delete
 			URL url = new URL("http://localhost:8080/LCMDatabase2/api/lcm/user/" + userid);
 			HttpURLConnection con = (HttpURLConnection) url.openConnection();
+			
+			//specification of request type
 			con.setRequestMethod("DELETE");
 		
+			//assertion that the response code of the HTTP Request is 200
 			int responseCode = con.getResponseCode();
 		
 			assertEquals(200, responseCode);
-			
-			System.out.println(responseCode);
 		}
 		catch(Exception e)
 		{

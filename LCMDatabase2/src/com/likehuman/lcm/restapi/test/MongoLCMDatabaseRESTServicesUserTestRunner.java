@@ -1,5 +1,12 @@
 package com.likehuman.lcm.restapi.test;
 
+/**
+ * @author Milo Davis
+ * Purpose: This JUNIT test runner runs MongoLCMDatabaseRESTServicesUserTestSuite and displays if the tests
+ * were successful.
+ */
+
+
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;

@@ -1,14 +1,19 @@
 package com.likehuman.lcm.restapi;
 
+import javax.ws.rs.DELETE;
+
+/**
+ * @author Milo Davis
+ * Purpose: This class implements methods defined in MongoLCMDatabase as REST Services, allowing HTTP requests
+ * to make calls to a specified database. 
+ */
+
+
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
-
-import java.io.IOException;
-
-import javax.ws.rs.PathParam;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;

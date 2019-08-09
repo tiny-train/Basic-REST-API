@@ -1,9 +1,15 @@
 package com.likehuman.lcm.mongodb.test;
 
+/**
+ * @author Milo Davis
+ * Purpose: This JUNIT test runner runs MongoLCMDatabaseUserTestSuite and displays if the tests
+ * were successful.
+ */
+
+
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
-
 
 
 public class MongoLCMDatabaseUserTestRunner 

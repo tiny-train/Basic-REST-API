@@ -1,7 +1,5 @@
 package com.likehuman.lcm.mongodb;
 
-import java.io.IOException;
-
 /**
  * @author Milo Davis
  * Purpose: This class implements CRUD/REST operations for user, data set, and group interactions with
@@ -9,14 +7,12 @@ import java.io.IOException;
  */
 
 
-
-
-
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-
 import javax.servlet.ServletContext;
+
 
 import org.bson.Document;
 
@@ -120,7 +116,6 @@ public class MongoLCMDatabase implements LCMDatabase
 			MongoCollection<Document> Users = db.getCollection("Users");
 			
 			Document  update = Document.parse(userUpdateJSONObject);
-			//update.put("_id", userid);
 			
 			
 			foundUser = Users.find(eq("_id", userid)).first();

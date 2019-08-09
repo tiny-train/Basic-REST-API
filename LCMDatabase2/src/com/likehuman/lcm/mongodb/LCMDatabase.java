@@ -1,19 +1,17 @@
 package com.likehuman.lcm.mongodb;
 
-import java.io.IOException;
-
-import javax.servlet.ServletContext;
-
-/*
- * Author: Milo Davis
+/**
+ * @author: Milo Davis
  * Purpose: This class defines CRUD/REST operations for user, data set, and group interactions with
  * mongodb.
  */
 
 
-import org.bson.Document;
+import java.io.IOException;
 
-import com.mongodb.client.MongoDatabase;
+import javax.servlet.ServletContext;
+
+import org.bson.Document;
 
 
 
