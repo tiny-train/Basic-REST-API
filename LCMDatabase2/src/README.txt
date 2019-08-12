@@ -1,0 +1,1 @@
+Test File for evaluating Jenkins SCM triggers from Bitbucket push.
