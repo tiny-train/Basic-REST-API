@@ -8,8 +8,8 @@
 	<property environment="env"/>
 	<property name="ECLIPSE_HOME" value="../../../../../Applications/Dev/Eclipse.app/Contents/Eclipse/"/>
 	<property name="debuglevel" value="source,lines,vars"/>
-	<property name="target" value="11"/>
-	<property name="source" value="11"/>
+	<property name="target" value="1.8"/>
+	<property name="source" value="1.8"/>
 	<property name="test.dir" location="src" />
 	<path id="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath">
 		<pathelement location="../../../dev/apache-tomcat-9.0.0.M21/lib/el-api.jar"/>
