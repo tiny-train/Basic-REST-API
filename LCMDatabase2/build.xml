@@ -76,22 +76,12 @@
 		<pathelement location="WebContent/WEB-INF/lib/yasson-1.0.3.jar" />
 	</path>
 	
-	<path id="EmbeddedTomcat.libraryclasspath">
-		<pathelement location="embedded-tomcat/annotations-api.jar" />
-		<pathelement location="embedded-tomcat/ecj-4.12.jar" />
-		<pathelement location="embedded-tomcat/tomcat-dbcp.jar" />
-		<pathelement location="embedded-tomcat/tomcat-embed-core.jar" />
-		<pathelement location="embedded-tomcat/tomcat-embed-jasper.jar" />
-		<pathelement location="embedded-tomcat/tomcat-embed-websocket.jar" />
-	</path>
-	
 	<path id="EAR Libraries.libraryclasspath" />
 	<path id="LCMDatabase2.classpath">
 		<pathelement location="build/classes" />
 <!--		<path refid="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath" />-->
 		<path refid="Web App Libraries.libraryclasspath" />
 		<path refid="EAR Libraries.libraryclasspath" />
-		<path refid="EmbeddedTomcat.libraryclasspath" />
 	</path>
 	<target name="init">
 		<mkdir dir="build/classes" />
