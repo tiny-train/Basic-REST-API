@@ -4,7 +4,7 @@
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
               as the first entry and export the buildfile again. -->
-<project basedir="." default="build" name="LCMDatabase2">
+<project basedir="." default="war" name="LCMDatabase2">
 	<property environment="env" />
 	<property name="ECLIPSE_HOME" value="../../../../../Applications/Dev/Eclipse.app/Contents/Eclipse/" />
 	<property name="debuglevel" value="source,lines,vars" />
@@ -84,6 +84,7 @@
 	</path>
 	<target name="init">
 		<mkdir dir="build/classes" />
+		<mkdir dir="dist" />
 		<copy includeemptydirs="false" todir="build/classes">
 			<fileset dir="src">
 				<exclude name="**/*.java" />
@@ -92,6 +93,7 @@
 	</target>
 	<target name="clean">
 		<delete dir="build/classes" />
+		<delete dir="dist" />
 	</target>
 	<target depends="clean" name="cleanall" />
 	<target depends="build-subprojects,build-project" name="build" />
@@ -118,6 +120,14 @@
 		<antcall target="build" />
 	</target>
 
+	<target name="war" depends="build">
+		<war destfile="dist/LCM.war" webxml="WebContent/WEB-INF/web.xml">
+			<fileset dir="WebContent" />
+			<lib dir="WebContent/WEB-INF/lib" />
+			<classes dir="build/classes" />
+		</war>
+	</target>
+
 	<property name="test.dir" location="src" />
 	<property name="test.report.dir" location="build/testreport" />
 
@@ -128,8 +138,8 @@
 	<target name="junit" depends="build,testmakedir">
 
 		<junit printsummary="yes" haltonfailure="no" outputtoformatters="true" fork="true">
-			
-			<formatter type="xml" usefile="true"/>
+
+			<formatter type="xml" usefile="true" />
 			<classpath refid="Web App Libraries.libraryclasspath" />
 
 			<classpath>
