@@ -10,13 +10,13 @@ import org.junit.Test;
 
 public class LCMAdminRestServicesTest {
 
-	public static Tomcat tomcat;
+	//public static Tomcat tomcat;
 
 	@Before
 	public void setup()
 	{
 		System.err.println("Setup!");
-
+/*
 		tomcat = new Tomcat();
 
 		try {
@@ -30,7 +30,7 @@ public class LCMAdminRestServicesTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+*/		
 	}
 
 	@Test
@@ -41,11 +41,12 @@ public class LCMAdminRestServicesTest {
 	@After
 	public void teardown()
 	{
+		/*
 		try {
 			tomcat.stop();
 		} catch (LifecycleException e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 	
 }
