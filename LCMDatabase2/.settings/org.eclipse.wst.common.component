@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="LCMDatabase2">
+        
+    <wb-module deploy-name="LCMDatabase">
+                
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+                
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="LCMDatabase2"/>
-        <property name="java-output-path" value="/LCMDatabase2/build/classes"/>
+                
+        <property name="java-output-path" value="/LCMDatabase/build/classes"/>
+        <property name="context-root" value="LCMDatabase"/>
+            
     </wb-module>
+    
 </project-modules>
