@@ -125,24 +125,20 @@
 		<mkdir dir="${test.report.dir}" />
 	</target>
 
-	<path id="junit.class.path">
-		<pathelement location="WebContent/WEB-INF/lib/junit-4.13-beta-3.jar" />
-		<pathelement location="WebContent/WEB-INF/lib/hamcrest-core-1.3.jar" />
-		<pathelement location="build/classes" />
-	</path>
-
 	<target name="junit" depends="build,testmakedir">
 
-		<junit printsummary="yes" haltonfailure="no" showoutput="true">
-			<classpath refid="junit.class.path" />
+		<junit printsummary="yes" haltonfailure="no" outputtoformatters="true" fork="true">
+			
+			<formatter type="xml" usefile="true"/>
+			<classpath refid="Web App Libraries.libraryclasspath" />
 
 			<classpath>
 				<pathelement location="build/classes" />
 			</classpath>
 
 			<batchtest todir="${test.report.dir}">
-				<fileset dir="${test.dir}">
-					<include name="**/*TestSuite.java" />
+				<fileset dir="build/classes">
+					<include name="**/MongoLCMDatabaseTestSuite.class" />
 				</fileset>
 			</batchtest>
 
