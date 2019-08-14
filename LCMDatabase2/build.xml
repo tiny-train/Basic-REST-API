@@ -135,11 +135,6 @@
 	<target name="junit" depends="build,testmakedir">
 
 		<junit printsummary="yes" haltonfailure="yes">
-
-	<!--		<classpath>
-				<pathelement location="${project.class.path}" />
-				<pathelement path="${java.class.path}" />
-			</classpath>-->
 			<classpath refid="junit.class.path" />
 
 			<batchtest todir="${test.report.dir}">
