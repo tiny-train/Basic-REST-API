@@ -2,7 +2,7 @@ package com.likehuman.lcm.mongodb.test;
 
 /**
  * @author Milo Davis
- * Purpose: This JUNIT test determines if users can be successfully posted and then found
+ * Purpose: This JUNIT test determines if datasets can be successfully posted and then found
  * 			with the method defined in MongoLCMDatabase
  */
 
@@ -20,7 +20,7 @@ import com.likehuman.lcm.mongodb.LCMDatabaseFactory;
 import com.likehuman.lcm.mongodb.MongoLCMDatabase;
 
 
-public class MongoLCMDatabasePostGetUserTest 
+public class MongoLCMDatabasePostGetDatasetTest 
 {
 	//this setup creates an entirely new database for the tests we are going to conduct 
 	private static MongoLCMDatabase db;
@@ -28,52 +28,55 @@ public class MongoLCMDatabasePostGetUserTest
 	public void setup() throws LCMDatabaseException
 	{
 		Random rand = new Random();
-			
+		
 		String dbid = "" + rand.nextInt(1000000);
 		db = LCMDatabaseFactory.getMongoLCMDatabase(MongoLCMDatabaseTestRunner.mongodbhost, MongoLCMDatabaseTestRunner.mongodbport, "testLCMDatabase" + dbid);
 	}
-	
-	
-	
+		
+		
+		
 	@Test 
-	public void userPostGetTest() 
+	public void datasetPostGetTest() 
 	{
 		try
 		{
-			//creation of a random userid for the user we are going to post
+			//creation of a random id for the dataset we are going to post
 			Random rand = new Random();
-			String userid = "" + rand.nextInt(1000000);
+			String datasetid = "" + rand.nextInt(1000000);
+				
+			//creation of a JSON string for the dataset we are going to post
+			String datasetJSONString = "{'metadata' : [{ 'title': 'Horses', 'lastaccessed' : '010693' }], 'datafields' : [{'horse1' : 'Ardennes','horse2' : 'Mississipi Fox Trotter'}]}";
 			
-			//creation of a JSON string for the user we are going to post
-			String userJSONString = "{'name': 'Jean Pierre Polnareff', 'email': 'silverchariot@gmail.com'}";
+			//posting dataset
+			db.postDataset(datasetid, datasetJSONString);
 			
-			//posting user
-			db.postUser(userid, userJSONString);
+			datasetJSONString = "{'_id': '" + datasetid + "', 'metadata' : [{ 'title': 'Horses', 'lastaccessed' : '010693' }], 'datafields' : [{'horse1' : 'Ardennes','horse2' : 'Mississipi Fox Trotter'}]}";
+			
+			
+			Document  unpostedDataset = Document.parse(datasetJSONString);
+			
+			//finding the posted dataset
+			Document postedDataset = db.getDataset(datasetid);
 		
-			userJSONString = "{'_id': '"+ userid +"', 'name': 'Jean Pierre Polnareff', 'email': 'silverchariot@gmail.com'}";
-			Document  unpostedUser = Document.parse(userJSONString);
-		
-			//finding the posted user
-			Document postedUser = db.getUser(userid);
-		
-		
-			//comparison of the hardcoded string we parsed as JSON, and the user found in database
-			assertEquals(unpostedUser, postedUser);
+			
+			//comparison of the hardcoded string we parsed as JSON, and the dataset found in database
+			assertEquals(unpostedDataset, postedDataset);
 		}
+		
 		catch(LCMDatabaseException e)
 		{
 			System.out.println("Test failed due to database exception.");
 		}
-		
+			
 	}
+		
 	
-	
-	
+		
 	//this teardown deletes the test database we created after the test is finished
 	@After
 	public void teardown()
 	{
 		db.dropDatabase();
 	}
-	
+		
 }

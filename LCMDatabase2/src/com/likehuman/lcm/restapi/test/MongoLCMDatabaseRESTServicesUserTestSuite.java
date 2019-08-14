@@ -3,7 +3,7 @@ package com.likehuman.lcm.restapi.test;
 /**
  * @author Milo Davis
  * Purpose: This JUNIT test suite allows for all tests in com.likehuman.lcm.restapi.test to be run in a 
- * particular order.
+ * 			particular order, such that a user is posted, found, updated, and finally deleted.
  */
 
 

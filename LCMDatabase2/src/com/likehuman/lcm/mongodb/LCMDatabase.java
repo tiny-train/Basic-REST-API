@@ -1,38 +1,33 @@
 package com.likehuman.lcm.mongodb;
 
 /**
- * @author: Milo Davis
- * Purpose: This class defines CRUD/REST operations for user, data set, and group interactions with
- * mongodb.
+ * @author Milo Davis
+ * Purpose: This interface class defines CRUD/REST functions for actions on the database..
  */
 
-
-import java.io.IOException;
-
-import javax.servlet.ServletContext;
 
 import org.bson.Document;
 
 
-
-
 public interface LCMDatabase 
 {
-	
-	void setContext(ServletContext context);
 	//---------------User Functions---------------//
-	void 		postUser(String userid, String userJSONObject) 		throws LCMDatabaseException, IOException;
-	Document 	getUser(String userid) 								throws LCMDatabaseException;
-	void 		deleteUser(String userid) 							throws LCMDatabaseException;
-	void 		putUser(String userid, String newuserJSONObject)	throws LCMDatabaseException, IOException;
+	void 		postUser(String userid, String userJSONObject) 					throws LCMDatabaseException;
+	Document 	getUser(String userid) 											throws LCMDatabaseException;
+	void 		deleteUser(String userid) 										throws LCMDatabaseException;
+	void 		putUser(String userid, String userUpdateJSONObject)				throws LCMDatabaseException;
 	
 	
 	//---------------Data Set Functions------------//
+	void 		postDataset(String datasetid, String datasetJSONObject)			throws LCMDatabaseException;
+	Document	getDataset(String datasetid)									throws LCMDatabaseException;
+	void 		deleteDataset(String datasetid)									throws LCMDatabaseException;
+	void 		putDataset(String datasetid, String datasetUpdateJSONObject)	throws LCMDatabaseException;
 	
 	
 	//---------------Group Functions---------------//
 	
 	
 	//---------------Database Functions------------//
-	void dropDatabase();
+	void 		dropDatabase();
 }

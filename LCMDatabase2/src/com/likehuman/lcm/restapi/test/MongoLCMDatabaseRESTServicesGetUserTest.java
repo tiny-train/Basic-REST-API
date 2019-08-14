@@ -40,6 +40,7 @@ public class MongoLCMDatabaseRESTServicesGetUserTest
 		catch(Exception e)
 		{
 			System.out.println("Get request could not be made.");
+			e.printStackTrace(System.err);
 		}
 	}
 

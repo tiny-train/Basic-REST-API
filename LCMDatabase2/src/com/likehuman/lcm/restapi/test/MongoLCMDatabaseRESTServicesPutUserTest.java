@@ -14,6 +14,7 @@ import java.net.URL;
 
 import org.junit.Test;
 
+
 public class MongoLCMDatabaseRESTServicesPutUserTest
 {
 	@Test
@@ -49,6 +50,7 @@ public class MongoLCMDatabaseRESTServicesPutUserTest
 		catch(Exception e)
 		{
 			System.out.println("Put/Update request could not be made.");
+			e.printStackTrace(System.err);
 		}
 	}
 	

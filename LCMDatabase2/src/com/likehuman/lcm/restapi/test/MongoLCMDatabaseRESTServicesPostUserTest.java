@@ -52,13 +52,8 @@ public class MongoLCMDatabaseRESTServicesPostUserTest
 		catch(Exception e)
 		{
 			System.out.println("Post request could not be made.");
+			e.printStackTrace(System.err);
 		}
 	}
 	
-//	public static void main(String[] args)
-//	{
-//		MongoLCMDatabaseRESTServicesPostUserTest test = new MongoLCMDatabaseRESTServicesPostUserTest();
-//		
-//		test.postUserTest();
-//	}
 }

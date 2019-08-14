@@ -2,14 +2,14 @@ package com.likehuman.lcm.mongodb.test;
 
 /**
  * @author Milo Davis
- * Purpose: This JUNIT test determines if users can be successfully deleted with the method defined in MongoLCMDatabase
+ * Purpose: This JUNIT test determines if datasets can be successfully deleted
+ * 			with the method defined in MongoLCMDatabase
  */
 
+import static org.junit.Assert.assertNull;
 
 import java.io.IOException;
 import java.util.Random;
-
-import static org.junit.Assert.assertNull;
 
 import org.bson.Document;
 import org.junit.After;
@@ -20,7 +20,8 @@ import com.likehuman.lcm.mongodb.LCMDatabaseException;
 import com.likehuman.lcm.mongodb.LCMDatabaseFactory;
 import com.likehuman.lcm.mongodb.MongoLCMDatabase;
 
-public class MongoLCMDatabaseDeleteUserTest 
+
+public class MongoLCMDatabaseDeleteDatasetTest 
 {
 	//this setup creates an entirely new database for the tests we are going to conduct 
 	private static MongoLCMDatabase db;
@@ -28,44 +29,45 @@ public class MongoLCMDatabaseDeleteUserTest
 	public void setup() throws LCMDatabaseException
 	{
 		Random rand = new Random();
-			
+	
 		String dbid = "" + rand.nextInt(1000000);
 		db = LCMDatabaseFactory.getMongoLCMDatabase(MongoLCMDatabaseTestRunner.mongodbhost, MongoLCMDatabaseTestRunner.mongodbport, "testLCMDatabase" + dbid);
 	}
-	
-	
-	
+
+
+
 	@Test
-	public void userDeleteTest() throws LCMDatabaseException, IOException
+	public void datasetDeleteTest() throws LCMDatabaseException, IOException
 	{
 		//creation of userid for the user we are going to post
 		Random rand = new Random();
-		String userid = "" + rand.nextInt(1000000);
-		
+		String datasetid = "" + rand.nextInt(1000000);
+
 		//creation of a JSON string for the user we are going to post
-		String userJSONString = "{'name': 'Jean Pierre Polnareff', 'email': 'silverchariot@gmail.com'}";
+		String datasetJSONString = "{'metadata' : [{ 'title': 'Horses', 'lastaccessed' : '010693' }], 'datafields' : [{'horse1' : 'Ardennes','horse2' : 'Mississipi Fox Trotter'}]}";
 		
+
 		//post of user
-		db.postUser(userid, userJSONString);
-		
+		db.postDataset(datasetid, datasetJSONString);
+
 		//deletion of user
-		db.deleteUser(userid);
-		
+		db.deleteDataset(datasetid);
+
 		//attempt to find the user we have deleted
-		Document deletedUser = db.getUser(userid);
-		
-		
+		Document deletedDataset = db.getDataset(datasetid);
+
+
 		//assertion that the user does not exist anymore
-		assertNull(deletedUser);
+		assertNull(deletedDataset);
 	}
-	
-	
-	
+
+
+
 	//this teardown deletes the test database we created after the test is finished
 	@After
 	public void teardown()
 	{
 		db.dropDatabase();
 	}
-	
+
 }

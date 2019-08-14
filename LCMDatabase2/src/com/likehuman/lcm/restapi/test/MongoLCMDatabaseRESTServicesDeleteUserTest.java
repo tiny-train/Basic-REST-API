@@ -13,6 +13,7 @@ import java.net.URL;
 
 import org.junit.Test;
 
+
 public class MongoLCMDatabaseRESTServicesDeleteUserTest 
 {
 	@Test
@@ -35,9 +36,11 @@ public class MongoLCMDatabaseRESTServicesDeleteUserTest
 		
 			assertEquals(200, responseCode);
 		}
+		
 		catch(Exception e)
 		{
 			System.out.println("Delete request could not be made.");
+			e.printStackTrace(System.err);
 		}
 	}	
 	
