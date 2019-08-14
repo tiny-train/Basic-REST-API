@@ -130,16 +130,17 @@
 	<path id="junit.class.path">
 		<pathelement location="WebContent/WEB-INF/lib/junit-4.13-beta-3.jar" />
 		<pathelement location="WebContent/WEB-INF/lib/hamcrest-core-1.3.jar" />
+		<pathelement location="build/classes" />
 	</path>
 
 	<target name="junit" depends="build,testmakedir">
 
-		<junit printsummary="yes" haltonfailure="yes">
+		<junit printsummary="yes" haltonfailure="no">
 			<classpath refid="junit.class.path" />
 
 			<batchtest todir="${test.report.dir}">
 				<fileset dir="${test.dir}">
-					<include name="**/*TestRunner.java" />
+					<include name="**/*TestSuite.java" />
 				</fileset>
 			</batchtest>
 
