@@ -119,11 +119,9 @@
 	</target>
 
 	<property name="test.dir" location="src" />
-	<property name="build.test.dir" location="build/tests" />
 	<property name="test.report.dir" location="build/testreport" />
 
 	<target name="testmakedir">
-		<mkdir dir="${build.test.dir}" />
 		<mkdir dir="${test.report.dir}" />
 	</target>
 
@@ -135,8 +133,12 @@
 
 	<target name="junit" depends="build,testmakedir">
 
-		<junit printsummary="yes" haltonfailure="no">
+		<junit printsummary="yes" haltonfailure="no" showoutput="true">
 			<classpath refid="junit.class.path" />
+
+			<classpath>
+				<pathelement location="build/classes" />
+			</classpath>
 
 			<batchtest todir="${test.report.dir}">
 				<fileset dir="${test.dir}">
