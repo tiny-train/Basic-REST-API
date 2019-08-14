@@ -1,9 +1,5 @@
 package com.likehuman.lcm.restapi.test;
 
-import javax.servlet.ServletException;
-
-import org.apache.catalina.LifecycleException;
-import org.apache.catalina.startup.Tomcat;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
