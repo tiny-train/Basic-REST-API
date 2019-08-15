@@ -10,6 +10,7 @@
 	<property name="debuglevel" value="source,lines,vars" />
 	<property name="target" value="1.8" />
 	<property name="source" value="1.8" />
+	<property name="tomcat.deploy.dir" value="/var/lib/tomcat8" />
 
 	<path id="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath">
 		<pathelement location="../../../dev/apache-tomcat-9.0.0.M21/lib/el-api.jar" />
@@ -75,11 +76,11 @@
 		<pathelement location="WebContent/WEB-INF/lib/validation-api-2.0.1.Final.jar" />
 		<pathelement location="WebContent/WEB-INF/lib/yasson-1.0.3.jar" />
 	</path>
-	
+
 	<path id="EAR Libraries.libraryclasspath" />
 	<path id="LCMDatabase2.classpath">
 		<pathelement location="build/classes" />
-<!--		<path refid="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath" />-->
+		<!--		<path refid="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath" />-->
 		<path refid="Web App Libraries.libraryclasspath" />
 		<path refid="EAR Libraries.libraryclasspath" />
 	</path>
@@ -127,6 +128,19 @@
 			<lib dir="WebContent/WEB-INF/lib" />
 			<classes dir="build/classes" />
 		</war>
+	</target>
+
+	<target name="tomcat-dir-check" depends="war">
+		<condition property="dir.exists">
+			<available file="${tomcat.deploy.dir}" type="dir" />
+		</condition>
+	</target>
+
+	<target name="deploy" depends="tomcat-dir-check" if="${dir.exists}">
+		<echo message="Tomcat Deployment Directory exists. Copying war." />
+		<copy todir="${tomcat.deploy.dir}">
+			<fileset dir="dist/LCMDatabase.war" includes="org.eclipse.jdt.core_*.jar" />
+		</copy>
 	</target>
 
 	<property name="test.dir" location="src" />
