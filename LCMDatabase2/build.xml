@@ -139,7 +139,7 @@
 	<target name="deploy" depends="tomcat-dir-check" if="${dir.exists}">
 		<echo message="Tomcat Deployment Directory exists. Copying war to deployment directory." />
 		<delete file="${tomcat.deploy.dir}/LCMDatabase.war"/>
-		<delete dir="${tomcat.deploy.dir}/LCMDatabase"/>
+		<delete dir="${tomcat.deploy.dir}/LCMDatabase" quiet="true"/>
 		<copy todir="${tomcat.deploy.dir}">
 			<fileset dir="dist" includes="*.war"/>
 		</copy>
