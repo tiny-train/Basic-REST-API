@@ -10,7 +10,7 @@
 	<property name="debuglevel" value="source,lines,vars" />
 	<property name="target" value="1.8" />
 	<property name="source" value="1.8" />
-	<property name="tomcat.deploy.dir" value="/var/lib/tomcat8" />
+	<property name="tomcat.deploy.dir" value="/var/lib/tomcat8/webapps" />
 
 	<path id="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath">
 		<pathelement location="../../../dev/apache-tomcat-9.0.0.M21/lib/el-api.jar" />
@@ -137,7 +137,7 @@
 	</target>
 
 	<target name="deploy" depends="tomcat-dir-check" if="${dir.exists}">
-		<echo message="Tomcat Deployment Directory exists. Copying war." />
+		<echo message="Tomcat Deployment Directory exists. Copying war to deployment directory." />
 		<copy todir="${tomcat.deploy.dir}">
 			<fileset dir="dist" includes="*.war"/>
 		</copy>
