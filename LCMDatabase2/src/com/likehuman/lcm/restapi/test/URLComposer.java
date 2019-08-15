@@ -9,7 +9,8 @@ public class URLComposer {
 		
 		String hostname = System.getProperty("hostname", "localhost");
 		int port = Integer.parseInt(System.getProperty("port", "8080"));
-		return new URL("http://"+hostname+":"+port+""+path);
+		String servletName = System.getProperty("servlet", "LCMDatabase");
+		return new URL("http://"+hostname+":"+port+"/"+servletName+path);
 		
 	}
 	

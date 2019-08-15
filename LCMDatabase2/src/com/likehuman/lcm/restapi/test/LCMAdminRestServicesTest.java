@@ -27,7 +27,7 @@ public class LCMAdminRestServicesTest {
 		URL url;
 		try {
 			
-			url = URLComposer.composeURL("/LCMDatabase/api/lcm/admin/ping");
+			url = URLComposer.composeURL("/api/lcm/admin/ping");
 			HttpURLConnection con = (HttpURLConnection) url.openConnection();
 			
 			//specification of request type
