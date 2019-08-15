@@ -4,10 +4,8 @@ import static org.junit.Assert.assertEquals;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.Reader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -16,18 +14,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class LCMAdminRestServicesTest {
-
-	private String hostname;
-	private int port;
-	private String path;
-
+	
 	@Before
 	public void setup()
 	{
-		
-		hostname = System.getProperty("hostname", "localhost");
-		port = Integer.parseInt(System.getProperty("port", "8080"));
-		path = System.getProperty("path", "/LCMDatabase/api/lcm/admin/ping");
 		
 	}
 
@@ -37,8 +27,7 @@ public class LCMAdminRestServicesTest {
 		URL url;
 		try {
 			
-			// create url for api test
-			url = new URL("http://"+hostname+":"+port+""+path);
+			url = URLComposer.composeURL("/LCMDatabase/api/lcm/admin/ping");
 			HttpURLConnection con = (HttpURLConnection) url.openConnection();
 			
 			//specification of request type
@@ -64,7 +53,6 @@ public class LCMAdminRestServicesTest {
 			assert(false);
 			
 		}
-		
 	}
 
 	@After
