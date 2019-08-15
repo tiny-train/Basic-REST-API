@@ -139,7 +139,7 @@
 	<target name="deploy" depends="tomcat-dir-check" if="${dir.exists}">
 		<echo message="Tomcat Deployment Directory exists. Copying war." />
 		<copy todir="${tomcat.deploy.dir}">
-			<fileset dir="dist/LCMDatabase.war" includes="org.eclipse.jdt.core_*.jar" />
+			<fileset dir="dist" includes="*.war"/>
 		</copy>
 	</target>
 
