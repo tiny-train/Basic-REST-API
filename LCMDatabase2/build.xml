@@ -165,6 +165,9 @@
 			<classpath>
 				<pathelement location="build/classes" />
 			</classpath>
+			
+			<sysproperty key="port"
+			                 value="8081"/>
 
 			<batchtest todir="${test.report.dir}">
 				<fileset dir="build/classes">
