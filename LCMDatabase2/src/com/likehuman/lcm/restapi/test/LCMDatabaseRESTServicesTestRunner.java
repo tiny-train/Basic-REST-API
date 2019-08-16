@@ -12,12 +12,12 @@ import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 
 
-public class MongoLCMDatabaseRESTServicesUserTestRunner 
+public class LCMDatabaseRESTServicesTestRunner 
 {
 	//this main method receives the result of the test suite and prints it
 	public static void main(String[] args)
 	{
-		Result result = JUnitCore.runClasses(MongoLCMDatabaseRESTServicesUserTestSuite.class);
+		Result result = JUnitCore.runClasses(LCMDatabaseRESTServicesTestSuite.class);
 		
 		for(Failure failure : result.getFailures())
 		{

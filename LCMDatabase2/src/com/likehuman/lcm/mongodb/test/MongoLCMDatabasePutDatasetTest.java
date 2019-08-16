@@ -1,5 +1,12 @@
 package com.likehuman.lcm.mongodb.test;
 
+
+/**
+ * @author Milo Davis
+ * Purpose: This JUNIT test determines if datasets can be successfully posted and then updated
+ * 			with the method defined in MongoLCMDatabase
+ */
+
 import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
@@ -33,7 +40,7 @@ public class MongoLCMDatabasePutDatasetTest
 	@Test
 	public void datasetPutTest() throws LCMDatabaseException, IOException
 	{
-		//creation of a random id for the user we are going to experiment on
+		//creation of a random id for the dataset we are going to experiment on
 		Random rand = new Random();
 		String datasetid = "" + rand.nextInt(1000000);
 		
@@ -42,15 +49,15 @@ public class MongoLCMDatabasePutDatasetTest
 		String datasetJSONString = "{'metadata' : [{ 'title': 'Horses', 'lastaccessed' : '010693' }], 'datafields' : [{'horse1' : 'Ardennes','horse2' : 'Mississipi Fox Trotter'}]}";
 		
 		
-		//the update is appended with the userid so it will match with the user that will be posted
+		//the update is appended with the datasetid so it will match with the user that will be posted
 		String datasetJSONStringUpdate = "{'_id': '" + datasetid + "', 'metadata' : [{ 'title': 'Horses', 'lastaccessed' : '010693' }], 'datafields' : [{'horse1' : 'Mustang','horse2' : 'Arabian'}]}";
 		
 		
-		//the first string is posted as a user 
+		//the first string is posted as a dataset
 		db.postDataset(datasetid, datasetJSONString);
 		
 		
-		//the user is then updated in the database
+		//the dataset is then updated in the database
 		db.putDataset(datasetid, datasetJSONStringUpdate);
 		
 		
@@ -58,11 +65,11 @@ public class MongoLCMDatabasePutDatasetTest
 		Document  datasetUpdateComparison = Document.parse(datasetJSONStringUpdate);
 		
 		
-		//find the user that has been updated in the database
+		//find the dataset that has been updated in the database
 		Document postedDatasetUpdate = db.getDataset(datasetid);
 		
 		
-		//assertion that the hardcoded string we just parsed as JSON is equal to the user we found in the 
+		//assertion that the hardcoded string we just parsed as JSON is equal to the dataset we found in the 
 		//database
 		assertEquals(datasetUpdateComparison, postedDatasetUpdate);
 	}

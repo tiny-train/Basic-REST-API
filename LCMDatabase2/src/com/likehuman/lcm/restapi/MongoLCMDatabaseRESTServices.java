@@ -25,17 +25,23 @@ import com.likehuman.lcm.mongodb.MongoLCMDatabase;
 
 
 //defines a pathway for the http calls 
-@Path("/api/lcm/user/")
+@Path("/api/lcm/")
 public class MongoLCMDatabaseRESTServices
 {
+	//Servlet Context here defers to variables defined in the web.xml for database connections
 	@Context ServletContext context;
 	
+	
+	
+	
+	
+	//---------------User Functions---------------//
 	
 	//receives a post request and posts provided user data into the database
 	@POST	
 	
 	//appends the path with a parameter that is passed to the call, being the userid
-	@Path("{userid}")
+	@Path("user/{userid}")
 	public Response postUserService(@PathParam("userid") String userid, String userJSONObject) 
 	{	
 		try
@@ -62,7 +68,7 @@ public class MongoLCMDatabaseRESTServices
 	@GET	
 	
 	//appends the path with a parameter that is passed to the call, being the userid
-	@Path ("{userid}")
+	@Path ("user/{userid}")
 	public Response getUserService(@PathParam("userid") String userid) 
 	{
 		Document foundUser;
@@ -91,7 +97,7 @@ public class MongoLCMDatabaseRESTServices
 	@DELETE 
 	
 	//appends the path with a parameter that is passed to the call, being the userid
-	@Path ("{userid}")
+	@Path ("user/{userid}")
 	public Response deleteUserService(@PathParam("userid") String userid) 
 	{
 		try
@@ -118,7 +124,7 @@ public class MongoLCMDatabaseRESTServices
 	@PUT
 	
 	//appends the path with a parameter that is passed to the call, being the userid
-	@Path ("{userid}") 
+	@Path ("user/{userid}") 
 	public Response putUserService(@PathParam("userid") String userid, String userUpdate) 
 	{
 		try
@@ -138,5 +144,120 @@ public class MongoLCMDatabaseRESTServices
 		//200 response code is returned on success
 		return Response.status(200).entity("User was successfully updated.").build();
 	}
+	
+	
+	
+	
+	
+	//---------------Dataset Functions---------------//
+	
+	//receives a post request and posts provided dataset into the database
+	@POST	
+	
+	//appends the path with a parameter that is passed to the call, being the datasetid
+	@Path("dataset/{datasetid}")
+	public Response postDatasetService(@PathParam("datasetid") String datasetid, String datasetJSONObject) 
+	{	
+		try
+		{
+			//database connection is established and the dataset is posted
+			MongoLCMDatabase db = LCMDatabaseFactory.getMongoLCMDatabase(context);
+			
+			db.postDataset(datasetid, datasetJSONObject);
+		}
+		catch(LCMDatabaseException e)
+		{
+			//errors are displayed and and a 404 message is handled if a problem occurs
+			e.printStackTrace(System.err);
+			return Response.status(404).entity("Dataset could not be created. Potential server error, consult stack trace.").build();		
+		}
+		
+		//200 response code is returned on success
+		return Response.status(200).entity("Dataset Successfully Created").build();
+	}
+			
+		
+		
+	//receives a get request and retrieves the dataset from the database
+	@GET	
+		
+	//appends the path with a parameter that is passed to the call, being the datasetid
+	@Path ("dataset/{datasetid}")
+	public Response getDatasetService(@PathParam("datasetid") String datasetid) 
+	{
+		Document foundDataset;
+		try
+		{
+			//database connection is established and the user is found
+			MongoLCMDatabase db = LCMDatabaseFactory.getMongoLCMDatabase(context);
+		
+			foundDataset = db.getDataset(datasetid);
+		}
+		catch(LCMDatabaseException e)
+		{
+			//errors are displayed and and a 404 message is handled if a problem occurs
+			e.printStackTrace(System.err);
+			return Response.status(404).entity("Dataset could not be found.").build();	
+		}
+			
+		//200 response code is returned on success
+		return Response.status(200).entity(foundDataset).build();
+		
+	}
+		
+		
+		
+	//receives a delete request and deletes the dataset from the database
+	@DELETE 
+		
+	//appends the path with a parameter that is passed to the call, being the datasetid
+	@Path ("dataset/{datasetid}")
+	public Response deleteDatasetService(@PathParam("datasetid") String datasetid) 
+	{
+		try
+		{
+			//database connection is established and dataset is deleted
+			MongoLCMDatabase db = LCMDatabaseFactory.getMongoLCMDatabase(context);
+		
+			db.deleteDataset(datasetid);
+		}
+		catch(LCMDatabaseException e)
+		{
+			//errors are displayed and and a 404 message is handled if a problem occurs
+			e.printStackTrace(System.err);
+			return Response.status(404).entity("Dataset either does not exist or could not be deleted.").build();	
+		}
+		
+		//200 response code is returned on success
+		return Response.status(200).entity("Dataset was successfully deleted.").build();
+	}
+		
+		
+		
+	//receives a put request and updates a dataset from the database
+	@PUT
+		
+	//appends the path with a parameter that is passed to the call, being the datasetid
+	@Path ("dataset/{datasetid}") 
+	public Response putDatasetService(@PathParam("datasetid") String datasetid, String datasetUpdate) 
+	{
+		try
+		{
+			//database connection is established and dataset is updated
+			MongoLCMDatabase db = LCMDatabaseFactory.getMongoLCMDatabase(context);
+		
+			db.putDataset(datasetid, datasetUpdate);
+		}
+		catch(LCMDatabaseException e)
+		{
+			//errors are displayed and and a 404 message is handled if a problem occurs
+			e.printStackTrace(System.err);
+			return Response.status(404).entity("Dataset either does not exist or could not be updated.").build();
+		}
+			
+		//200 response code is returned on success
+		return Response.status(200).entity("Dataset was successfully updated.").build();
+	}
+		
 	
 }

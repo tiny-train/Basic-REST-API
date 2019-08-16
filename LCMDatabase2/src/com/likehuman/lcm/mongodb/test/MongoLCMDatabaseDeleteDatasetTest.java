@@ -39,25 +39,25 @@ public class MongoLCMDatabaseDeleteDatasetTest
 	@Test
 	public void datasetDeleteTest() throws LCMDatabaseException, IOException
 	{
-		//creation of userid for the user we are going to post
+		//creation of a random id for the dataset we are going to post
 		Random rand = new Random();
 		String datasetid = "" + rand.nextInt(1000000);
 
-		//creation of a JSON string for the user we are going to post
+		//creation of a JSON string for the dataset we are going to post
 		String datasetJSONString = "{'metadata' : [{ 'title': 'Horses', 'lastaccessed' : '010693' }], 'datafields' : [{'horse1' : 'Ardennes','horse2' : 'Mississipi Fox Trotter'}]}";
 		
 
-		//post of user
+		//post of dataset
 		db.postDataset(datasetid, datasetJSONString);
 
-		//deletion of user
+		//deletion of dataset
 		db.deleteDataset(datasetid);
 
-		//attempt to find the user we have deleted
+		//attempt to find the dataset we have deleted
 		Document deletedDataset = db.getDataset(datasetid);
 
 
-		//assertion that the user does not exist anymore
+		//assertion that the dataset does not exist anymore
 		assertNull(deletedDataset);
 	}
 

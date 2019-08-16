@@ -14,7 +14,7 @@ import java.net.URL;
 import org.junit.Test;
 
 
-public class MongoLCMDatabaseRESTServicesDeleteUserTest 
+public class LCMDatabaseRESTServicesDeleteUserTest 
 {
 	@Test
 	public void deleteUserTest() 
@@ -22,10 +22,10 @@ public class MongoLCMDatabaseRESTServicesDeleteUserTest
 		try
 		{
 			//the userid created by the post user test is acquired
-			String userid = MongoLCMDatabaseRESTServicesPostUserTest.userid;
+			String userid = LCMDatabaseRESTServicesPostUserTest.userid;
 			
 			//creation of HTTP connection to find the user we want to delete
-			URL url = new URL("http://localhost:8080/LCMDatabase2/api/lcm/user/" + userid);
+			URL url = URLComposer.composeURL("/api/lcm/user/" + userid);
 			HttpURLConnection con = (HttpURLConnection) url.openConnection();
 			
 			//specification of request type

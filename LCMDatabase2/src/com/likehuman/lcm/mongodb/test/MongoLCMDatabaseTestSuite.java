@@ -17,9 +17,10 @@ import org.junit.runners.Suite;
    MongoLCMDatabasePostGetUserTest.class,		//user posted and found
    MongoLCMDatabasePutUserTest.class,			//user updated
    MongoLCMDatabaseDeleteUserTest.class,		//user deleted
-   //MongoLCMDatabasePostGetDatasetTest.class,
-   //MongoLCMDatabasePutDatasetTest.class,
-   //MongoLCMDatabaseDeleteDatasetTest.class
+   
+   MongoLCMDatabasePostGetDatasetTest.class,	//dataset posted and found
+   MongoLCMDatabasePutDatasetTest.class,		//dataset updated
+   MongoLCMDatabaseDeleteDatasetTest.class		//dataset deleted
 })
 
 

@@ -1,12 +1,12 @@
 package com.likehuman.lcm.mongodb;
 
-import static com.mongodb.client.model.Filters.eq;
-
 /**
  * @author Milo Davis
  * Purpose: This class implements CRUD/REST operations for user, data set, and group interactions with
  * 			mongodb from the LCMDatabase class.
  */
+
+import static com.mongodb.client.model.Filters.eq;
 
 
 import java.io.IOException;

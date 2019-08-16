@@ -21,7 +21,7 @@ public class URLComposer {
 		
 		int port = Integer.parseInt(System.getProperty("port", "8080"));
 		
-		String servletName = System.getProperty("servlet", "LCMDatabase");
+		String servletName = System.getProperty("servlet", "LCMDatabase2");
 		
 		return new URL("http://"+hostname+":"+port+"/"+servletName+path);
 		
