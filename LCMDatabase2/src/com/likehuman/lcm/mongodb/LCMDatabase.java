@@ -26,6 +26,10 @@ public interface LCMDatabase
 	
 	
 	//---------------Group Functions---------------//
+	void 		postGroup(String groupid, String groupJSONObject)				throws LCMDatabaseException;
+	Document 	getGroup(String groupid)										throws LCMDatabaseException;
+	void 		deleteGroup(String groupid)										throws LCMDatabaseException;
+	void 		putGroup(String groupid, String groupUpdateJSONObject)			throws LCMDatabaseException;
 	
 	
 	//---------------Database Functions------------//

@@ -271,7 +271,7 @@ public class MongoLCMDatabase implements LCMDatabase
 	//--------------Group Functions--------------//
 	
 	
-	public void 	postRole(String groupid, String groupJSONObject) throws LCMDatabaseException
+	public void 	postGroup(String groupid, String groupJSONObject) throws LCMDatabaseException
 	{	
 		try
 		{

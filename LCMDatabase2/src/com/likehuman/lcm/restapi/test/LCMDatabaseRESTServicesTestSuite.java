@@ -23,7 +23,12 @@ import org.junit.runners.Suite;
 	LCMDatabaseRESTServicesPostDatasetTest.class,	//dataset posted
 	LCMDatabaseRESTServicesGetDatasetTest.class,	//dataset found
 	LCMDatabaseRESTServicesPutDatasetTest.class,	//dataset updated
-	LCMDatabaseRESTServicesDeleteDatasetTest.class	//dataset deleted
+	LCMDatabaseRESTServicesDeleteDatasetTest.class,	//dataset deleted
+	
+	LCMDatabaseRESTServicesPostGroupTest.class,		//group posted
+	LCMDatabaseRESTServicesGetGroupTest.class,		//group found
+	LCMDatabaseRESTServicesPutGroupTest.class,		//group updated
+	LCMDatabaseRESTServicesDeleteGroupTest.class	//group deleted
 	
 })
 

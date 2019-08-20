@@ -258,6 +258,120 @@ public class MongoLCMDatabaseRESTServices
 		//200 response code is returned on success
 		return Response.status(200).entity("Dataset was successfully updated.").build();
 	}
+	
+	
+	
+	
+	
+	//---------------Group Functions---------------//
+	
+	//receives a post request and posts provided group data into the database
+	@POST	
+	
+	//appends the path with a parameter that is passed to the call, being the groupid
+	@Path("group/{groupid}")
+	public Response postGroupService(@PathParam("groupid") String groupid, String groupJSONObject) 
+	{	
+		try
+		{
+			//database connection is established and the group is posted
+			MongoLCMDatabase db = LCMDatabaseFactory.getMongoLCMDatabase(context);
+			
+			db.postGroup(groupid, groupJSONObject);
+		}
+		catch(LCMDatabaseException e)
+		{
+			//errors are displayed and and a 404 message is handled if a problem occurs
+			e.printStackTrace(System.err);
+			return Response.status(404).entity("Group could not be created. Potential server error, consult stack trace.").build();		
+		}
+		
+		//200 response code is returned on success
+		return Response.status(200).entity("Group Successfully Created").build();
+	}
+		
+	
+	
+	//receives a get request and retrieves the group from the database
+	@GET	
+	
+	//appends the path with a parameter that is passed to the call, being the groupid
+	@Path ("group/{groupid}")
+	public Response getGroupService(@PathParam("groupid") String groupid) 
+	{
+		Document foundGroup;
+		try
+		{
+			//database connection is established and the group is found
+			MongoLCMDatabase db = LCMDatabaseFactory.getMongoLCMDatabase(context);
+		
+			foundGroup = db.getGroup(groupid);
+		}
+		catch(LCMDatabaseException e)
+		{
+			//errors are displayed and and a 404 message is handled if a problem occurs
+			e.printStackTrace(System.err);
+			return Response.status(404).entity("Group could not be found.").build();	
+		}
+		
+		//200 response code is returned on success
+		return Response.status(200).entity(foundGroup).build();
+		
+	}
+	
+	
+	
+	//receives a delete request and deletes the group from the database
+	@DELETE 
+	
+	//appends the path with a parameter that is passed to the call, being the groupid
+	@Path ("group/{groupid}")
+	public Response deleteGroupService(@PathParam("groupid") String groupid) 
+	{
+		try
+		{
+			//database connection is established and user is deleted
+			MongoLCMDatabase db = LCMDatabaseFactory.getMongoLCMDatabase(context);
+		
+			db.deleteGroup(groupid);
+		}
+		catch(LCMDatabaseException e)
+		{
+			//errors are displayed and and a 404 message is handled if a problem occurs
+			e.printStackTrace(System.err);
+			return Response.status(404).entity("Group either does not exist or could not be deleted.").build();	
+		}
+	
+		//200 response code is returned on success
+		return Response.status(200).entity("Group was successfully deleted.").build();
+	}
+	
+	
+	
+	//receives a put request and updates a group from the database
+	@PUT
+	
+	//appends the path with a parameter that is passed to the call, being the groupid
+	@Path ("group/{groupid}") 
+	public Response putGroupService(@PathParam("groupid") String groupid, String groupUpdate) 
+	{
+		try
+		{
+			//database connection is established and group is updated
+			MongoLCMDatabase db = LCMDatabaseFactory.getMongoLCMDatabase(context);
+		
+			db.putGroup(groupid, groupUpdate);
+		}
+		catch(LCMDatabaseException e)
+		{
+			//errors are displayed and and a 404 message is handled if a problem occurs
+			e.printStackTrace(System.err);
+			return Response.status(404).entity("Group either does not exist or could not be updated.").build();
+		}
+		
+		//200 response code is returned on success
+		return Response.status(200).entity("Group was successfully updated.").build();
+	}
 		
 	
 }
