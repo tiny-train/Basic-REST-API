@@ -26,6 +26,7 @@ import com.likehuman.lcm.mongodb.MongoLCMDatabase;
 
 //defines a pathway for the http calls 
 @Path("/api/lcm/")
+
 public class MongoLCMDatabaseRESTServices
 {
 	//Servlet Context here defers to variables defined in the web.xml for database connections

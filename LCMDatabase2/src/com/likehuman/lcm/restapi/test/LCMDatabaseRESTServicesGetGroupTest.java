@@ -1,11 +1,18 @@
 package com.likehuman.lcm.restapi.test;
 
+/**
+ * @author Milo Davis
+ * Purpose: This JUNIT test determines if datasets can be successfully found through an HTTP request.
+ */
+
+
 import static org.junit.Assert.assertEquals;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
 
 import org.junit.Test;
+
 
 public class LCMDatabaseRESTServicesGetGroupTest
 {

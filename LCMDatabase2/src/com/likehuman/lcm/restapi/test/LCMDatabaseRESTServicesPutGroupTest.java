@@ -1,5 +1,11 @@
 package com.likehuman.lcm.restapi.test;
 
+/**
+ * @author Milo Davis
+ * Purpose: This JUNIT test determines if groups can be successfully updated through an HTTP request.
+ */
+
+
 import static org.junit.Assert.assertEquals;
 
 import java.io.DataOutputStream;
@@ -7,6 +13,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import org.junit.Test;
+
 
 public class LCMDatabaseRESTServicesPutGroupTest 
 {
