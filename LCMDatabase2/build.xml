@@ -168,6 +168,9 @@
 			
 			<sysproperty key="port"
 			                 value="8081"/>
+			
+			<sysproperty key="servlet"
+						     value="LCMDatabase"/>
 
 			<batchtest todir="${test.report.dir}">
 				<fileset dir="build/classes">
