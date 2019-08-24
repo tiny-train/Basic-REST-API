@@ -15,6 +15,7 @@ import java.nio.file.Paths;
 
 import org.bson.Document;
 
+import com.mongodb.MongoClientURI;
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -378,10 +379,6 @@ public class MongoLCMDatabase implements LCMDatabase
 	{
 		 db.drop();
 	}
-	
-	
-	
-	
 	
 	
 }

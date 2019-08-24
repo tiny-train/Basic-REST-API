@@ -13,7 +13,10 @@ package com.likehuman.lcm.mongodb;
 import javax.servlet.ServletContext;
 
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientOptions;
+import com.mongodb.MongoClientURI;
 import com.mongodb.MongoException;
+import com.mongodb.ServerAddress;
 
 
 public class LCMDatabaseFactory 
@@ -99,6 +102,35 @@ public class LCMDatabaseFactory
 	{	
 		//connects to database with specified host and port
 		MongoClient mongoClient = new MongoClient(mongohost, mongoport);
+			
+		
+		//connects to specified database, creates one if it doesn't exist
+		db = new MongoLCMDatabase(mongoClient.getDatabase(dbname));
+		
+		//throws exception if db is null
+		if(db == null)
+		{
+			throw new LCMDatabaseException("Cannot connect to specified database.");
+		}
+		
+	
+		
+		return db;
+		
+	}
+	
+	
+	//connects to a database by way of a specified uri and handles ssl conflicts
+	public static MongoLCMDatabase getMongoLCMDatabase(String uri, String dbname) throws LCMDatabaseException
+	{	
+		//this builder sets options for ssl communication and allows atypical hostnames to be accepted
+		MongoClientOptions.Builder builder = MongoClientOptions.builder().sslEnabled(true).sslInvalidHostNameAllowed(true);
+		
+		//the uri is created, combined with the builder options
+		MongoClientURI newuri = new MongoClientURI(uri, builder);	
+		
+		//a connection instance is created with the uri
+		MongoClient mongoClient = new MongoClient(newuri);
 			
 		
 		//connects to specified database, creates one if it doesn't exist
